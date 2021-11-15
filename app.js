@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
             this.bottom = newPlatBottom
             this.left = Math.random() * 315
             this.visual = document.createElement('div')
+
             const visual = this.visual
             visual.classList.add('platform')
             visual.style.left = this.left + 'px'

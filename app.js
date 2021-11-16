@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function createJumperMan() {
         grid.appendChild(JumperMan)
         JumperMan.classList.add('JumperMan')
+        JumperManLeftSpace = platforms[0].left
         JumperMan.style.left = JumperManLeft + 'px'
         JumperMan.style.bottom = JumperManBottom + 'px'
     }
@@ -18,7 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
             this.bottom = newPlatBottom
             this.left = Math.random() * 315
             this.visual = document.createElement('div')
-
             const visual = this.visual
             visual.classList.add('platform')
             visual.style.left = this.left + 'px'
@@ -34,6 +34,40 @@ document.addEventListener("DOMContentLoaded", () => {
             let newPlatBottom = 100 + i * platGap
             let newPlatform = new Platform(newPlatBottom)
         }
+    }
+
+    function movePlatforms() {
+        if (jumperManBottomSpace > 200) {
+            platforms.forEach(platform => {
+                platform.bottom -= 4
+                let visual = platform.visual
+                visual.style.bottom = platform.bottom + 'px'
+
+                if (platform.bottom < 10) {
+                    let firstPlatform = platforms[0].visual
+                    firstPlatform.classList.remove('platform')
+                    platforms.shift()
+                    console.log(platforms)
+                    score++
+                    var newPlatform = new Platform(600)
+                    platforms.push(newPlatform)
+
+                }
+            })
+        }
+    }
+
+    function fall() {
+        isJumping = false
+        clearInterval(upTimerId)
+        downTimerId = setInterval(function() {
+            jumperManBottomSpace -= 5
+            jumperMan.style.bottom = jumperManBottomSpace + 'px'
+            if (jumperManBottomSpace <= 0) {
+                gameOver()
+            }
+            platforms.forEach
+        })
     }
 
     function start() {

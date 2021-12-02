@@ -61,21 +61,21 @@ document.addEventListener("DOMContentLoaded", () => {
         isJumping = false
         clearInterval(upTimerId)
         downTimerId = setInterval(function() {
-            doodlerBottomSpace -= 5
-            doodler.style.bottom = doodlerBottomSpace + 'px'
-            if (doodlerBottomSpace <= 0) {
+            jumperManBottomSpace -= 5
+            doodler.style.bottom = jumperManBottomSpace + 'px'
+            if (jumperManBottomSpace <= 0) {
                 gameOver()
             }
             platforms.forEach(platform => {
                 if (
-                    (doodlerBottomSpace >= platform.bottom) &&
-                    (doodlerBottomSpace <= (platform.bottom + 15)) &&
-                    ((doodlerLeftSpace + 60) >= platform.left) &&
-                    (doodlerLeftSpace <= (platform.left + 85)) &&
+                    (jumperManBottomSpace >= platform.bottom) &&
+                    (jumperManBottomSpace <= (platform.bottom + 15)) &&
+                    ((jumperManLeftSpace + 60) >= platform.left) &&
+                    (jumperManLeftSpace <= (platform.left + 85)) &&
                     !isJumping
                 ) {
                     console.log('tick')
-                    startPoint = doodlerBottomSpace
+                    startPoint = jumperManBottomSpace
                     jump()
                     console.log('start', startPoint)
                     isJumping = true

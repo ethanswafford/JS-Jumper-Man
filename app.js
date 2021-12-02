@@ -61,13 +61,28 @@ document.addEventListener("DOMContentLoaded", () => {
         isJumping = false
         clearInterval(upTimerId)
         downTimerId = setInterval(function() {
-            jumperManBottomSpace -= 5
-            jumperMan.style.bottom = jumperManBottomSpace + 'px'
-            if (jumperManBottomSpace <= 0) {
+            doodlerBottomSpace -= 5
+            doodler.style.bottom = doodlerBottomSpace + 'px'
+            if (doodlerBottomSpace <= 0) {
                 gameOver()
             }
-            platforms.forEach
-        })
+            platforms.forEach(platform => {
+                if (
+                    (doodlerBottomSpace >= platform.bottom) &&
+                    (doodlerBottomSpace <= (platform.bottom + 15)) &&
+                    ((doodlerLeftSpace + 60) >= platform.left) &&
+                    (doodlerLeftSpace <= (platform.left + 85)) &&
+                    !isJumping
+                ) {
+                    console.log('tick')
+                    startPoint = doodlerBottomSpace
+                    jump()
+                    console.log('start', startPoint)
+                    isJumping = true
+                }
+            })
+
+        }, 20)
     }
 
     function start() {

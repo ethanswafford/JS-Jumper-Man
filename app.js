@@ -86,6 +86,23 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 20)
     }
 
+    function jump() {
+        clearInterval(downTimerId)
+        isJumping = true
+        upTimerId = setInterval(function() {
+            console.log(startPoint)
+            console.log('1', jumperManBottomSpace)
+            jumperManBottomSpace += 20
+            jumperMan.style.bottom = jumperManBottomSpace + 'px'
+            console.log('2', jumperManBottomSpace)
+            console.log('s', startPoint)
+            if (jumperManBottomSpace > (startPoint + 200)) {
+                fall()
+                isJumping = false
+            }
+        }, 30)
+    }
+
     function start() {
         if (!isGameOver) {
             createJumperMan()

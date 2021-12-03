@@ -103,6 +103,43 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 30)
     }
 
+    function moveLeft() {
+        if (isGoingRight) {
+            clearInterval(rightTimerId)
+            isGoingRight = false
+        }
+        isGoingLeft = true
+        leftTimerId = setInterval(function() {
+            if (jumperManLeftSpace >= 0) {
+                console.log('going left')
+                jumperManLeftSpace -= 5
+                jumperMan.style.left = jumperManLeftSpace + 'px'
+            } else moveRight()
+        }, 20)
+    }
+
+    function moveRight() {
+        if (isGoingLeft) {
+            clearInterval(leftTimerId)
+            isGoingLeft = false
+        }
+        isGoingRight = true
+        setInterval = setInterval(function() {
+            if (jumperManLeftSpace <= 313) {
+                console.log('going right')
+                jumperManLeftSpace += 5
+                jumperMan.style.left = jumperManLeftSpace + 'px'
+            } else moveLeft()
+        }, 20)
+    }
+
+    function moveStraight() {
+        isGoingRight = false
+        isGoingLeft = false
+        clearInterval(rightTimerId)
+        clearInterval(LeftTimerId)
+    }
+
     function start() {
         if (!isGameOver) {
             createJumperMan()

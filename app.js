@@ -140,10 +140,37 @@ document.addEventListener("DOMContentLoaded", () => {
         clearInterval(LeftTimerId)
     }
 
+    function control(e) {
+        doodler.style.bottom = doodlerBottomSpace + 'px'
+        if (e.key === 'ArrowLeft') {
+            moveLeft()
+        } else if (e.key === 'ArrowRight') {
+            moveRight()
+        } else if (e.key === 'ArrowUp') {
+            moveStraight()
+        }
+    }
+
+    function gameOver() {
+        isGameOver = true
+        while (grid.firstChild) {
+            console.log('remove')
+            grid.removeChild(grid.firstChild)
+        }
+        grid.innerHTML = score
+        clearInterval(upTimerId)
+        clearInterval(downTimerId)
+        clearInterval(leftTimerId)
+        clearInterval(rightTimerId)
+    }
+
     function start() {
         if (!isGameOver) {
-            createJumperMan()
             createPlatforms()
+            createJumperMan()
+            setInterval(movePlatforms, 30)
+            jump(startPoint)
+            document.addEventListener('keyup', control)
         }
     }
     start()

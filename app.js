@@ -1,4 +1,8 @@
+// testing live 
+
 console.log("hello, friend!");
+
+// building character and starting position 
 document.addEventListener("DOMContentLoaded", () => {
     const grid = document.querySelector('.grid')
     const jumperMan = document.createElement('div')
@@ -7,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let isGameOver = false
     let platformCount = 5
 
+    // construct the platforms 
     class Platform {
         constructor(newPlatBottom) {
             this.bottom = newPlatBottom
@@ -20,6 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
     }
+
+    // create platforms and make platform count with for loop that increments itself
 
     function createPlatforms() {
         for (i = 0; i < platformCount; i++) {
@@ -61,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function fall() {
         isJumping = false
         clearInterval(upTimerId)
-        downTimerId = setInterval(function() {
+        downTimerId = setInterval(function () {
             jumperManBottomSpace -= 5
             doodler.style.bottom = jumperManBottomSpace + 'px'
             if (jumperManBottomSpace <= 0) {
@@ -89,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function jump() {
         clearInterval(downTimerId)
         isJumping = true
-        upTimerId = setInterval(function() {
+        upTimerId = setInterval(function () {
             console.log(startPoint)
             console.log('1', jumperManBottomSpace)
             jumperManBottomSpace += 20
@@ -109,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
             isGoingRight = false
         }
         isGoingLeft = true
-        leftTimerId = setInterval(function() {
+        leftTimerId = setInterval(function () {
             if (jumperManLeftSpace >= 0) {
                 console.log('going left')
                 jumperManLeftSpace -= 5
@@ -124,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
             isGoingLeft = false
         }
         isGoingRight = true
-        setInterval = setInterval(function() {
+        setInterval = setInterval(function () {
             if (jumperManLeftSpace <= 313) {
                 console.log('going right')
                 jumperManLeftSpace += 5
